@@ -136,12 +136,12 @@ footer {
 /* Container for image + description */
 .project-container {
   display: flex;
-  flex-direction: column; /* stack on mobile */
+  flex-direction: column; /* mobile */
   align-items: center;
-  gap: 20px;              /* space between image and text */
-  max-width: 900px;
+  gap: 20px;
+  max-width: 1000px;     /* slightly wider container */
   margin: 0 auto;
-}
+
 
 .project-image img {
   width: 100%;
