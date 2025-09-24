@@ -70,22 +70,22 @@ header h1 {
   gap: 20px;
 }
 
-/* Project Card */
+/* Project card - smaller & centered */
 .project-card {
   display: block;
-  background: #111;
-  border-radius: 12px;
+  width: 280px;                  /* slightly smaller */
+  margin: 20px auto;             /* auto center */
   padding: 15px;
   border: 2px solid #0ff;
-  box-shadow: 0 0 12px #0ff;
+  border-radius: 12px;
+  background: #222;
   text-decoration: none;
   color: #0ff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px #0ff;    /* subtle glow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
 }
-.project-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #ff00ff;
-}
+
 .project-card img {
   width: 100%;
   height: auto;
@@ -95,16 +95,34 @@ header h1 {
   box-shadow: 0 0 8px #0ff;
 }
 
-/* Project Title & Description */
 .project-card h3 {
   font-size: 16px;
   color: #ff33cc;
   margin: 8px 0;
 }
+
 .project-card p {
   font-size: 12px;
   color: #0ff;
 }
+
+/* Hover glow effect */
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ff00ff;
+}
+
+
+/* Project Grid Layout */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* responsive columns */
+  gap: 20px;              /* space between cards */
+  justify-items: center;   /* center cards in grid */
+  margin: 40px auto;       /* top/bottom spacing */
+  max-width: 1200px;       /* prevent grid from stretching too much */
+}
+
 
 /* Footer */
 footer {
