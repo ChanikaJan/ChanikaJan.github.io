@@ -143,7 +143,7 @@ footer {
   flex-direction: column; /* mobile */
   align-items: center;
   gap: 20px;
-  max-width: 1000px;     /* slightly wider container */
+  max-width: 1300px;     /* slightly wider container */
   margin: 0 auto;
 
 
