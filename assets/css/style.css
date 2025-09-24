@@ -132,3 +132,56 @@ footer {
   color: #0ff;
   font-size: 12px;
 }
+
+/* Container for image + description */
+.project-container {
+  display: flex;
+  flex-direction: column; /* stack on mobile */
+  align-items: center;
+  gap: 20px;              /* space between image and text */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.project-image img {
+  width: 100%;
+  max-width: 500px;       /* limit image size */
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #0ff;
+  box-shadow: 0 0 12px #0ff;
+}
+
+.project-description {
+  text-align: left;
+  color: #0ff;
+}
+
+.project-description h2 {
+  color: #ff33cc;
+  text-shadow: 0 0 8px #ff33cc, 0 0 15px #ff33cc;
+  margin-bottom: 10px;
+}
+
+.project-description p,
+.project-description ul {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.project-description ul li {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+/* Responsive: row layout on wider screens */
+@media (min-width: 800px) {
+  .project-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .project-description {
+    margin-left: 20px;
+  }
+}
