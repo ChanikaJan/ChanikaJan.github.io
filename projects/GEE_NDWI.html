@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  ...
+  <link rel="stylesheet" href="prism.css" />
+</head>
+<body>
+  ...
+  <script src="prism.js"></script>
+</body>
+  
+<head>
   <meta charset="UTF-8">
   <title>NDWI Extraction with Google Earth Engine</title>
   <style>
@@ -31,7 +40,7 @@
     <!-- Project Image -->
 
      <div class="project-image">
-        <img src="../assets/images/GEENDIW.gif" alt="GIS Project">
+        <img src="../assets/images/GEENDIW.gif" alt="GIS Project" width="450" height="450">
       </div>
 
     <!-- Project Description -->
@@ -55,7 +64,7 @@
 
       <div class="project-image">
         <center>
-        <img src="../assets/images/GEENDWI_01.jpg" alt="GIS Project" width="400" height="400">
+        <img src="../assets/images/GEENDWI_01.jpg" alt="GIS Project" width="450" height="450">
         </center>
       </div>
   
@@ -79,7 +88,7 @@ var sentinel_Wet = ee.ImageCollection('COPERNICUS/S2_SR')
       
     <div class="project-image">
       <center> 
-        <img src="../assets/images/GEENDWI_02.jpg" alt="GIS Project" width="400" height="400">
+        <img src="../assets/images/GEENDWI_02.jpg" alt="GIS Project" width="450" height="450">
         </center>
       </div>
   
@@ -113,7 +122,7 @@ Map.addLayer(ndwi, {min:-1, max:1, palette:['brown','white','blue']}, 'NDWI');
 
  <div class="project-image">
    <center>
-        <img src="../assets/images/GEENDWI_03.jpg" alt="GIS Project" width="400" height="400">
+        <img src="../assets/images/GEENDWI_03.jpg" alt="GIS Project" width="450" height="450">
      </center>
   </div>
 
@@ -131,7 +140,7 @@ Map.addLayer(water.updateMask(water), {palette:['blue']}, 'Water Mask');
 
  <div class="project-image">
    <center>
-        <img src="../assets/images/GEENDWI_04.jpg" alt="GIS Project" width="400" height="400">
+        <img src="../assets/images/GEENDWI_04.jpg" alt="GIS Project" width="450" height="450">
    </center>
       </div>
 
