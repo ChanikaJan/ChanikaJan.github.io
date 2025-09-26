@@ -48,13 +48,14 @@
     and cloud cover.
   </p>
 
-  <pre><code class="language-javascript">
+      
+<pre><code class="language-javascript">
 var roi = Roi;
 var sentinel_Wet = ee.ImageCollection('COPERNICUS/S2_SR')
   .filterDate('2022-06-01','2022-10-30')
   .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
   .filterBounds(roi);
-  </code></pre>
+</code></pre>
 
   <h2>Step 2: Compute NDWI</h2>
 
@@ -97,7 +98,7 @@ Map.addLayer(ndwi, {min:-1, max:1, palette:['brown','white','blue']}, 'NDWI');
    <center>
         <img src="../assets/images/GEENDWI_03.jpg" alt="GIS Project">
      </center>
-      </div>
+  </div>
 
       
   <pre><code class="language-javascript">
