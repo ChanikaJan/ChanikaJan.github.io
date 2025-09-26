@@ -37,7 +37,9 @@
 <h2>Step 1: Load Sentinel-2 Imagery</h2>
 
       <div class="project-image">
+        <center>
         <img src="../assets/images/GEENDWI_01.jpg" alt="GIS Project">
+        </center>
       </div>
   
       
@@ -55,8 +57,12 @@ var sentinel_Wet = ee.ImageCollection('COPERNICUS/S2_SR')
   </code></pre>
 
   <h2>Step 2: Compute NDWI</h2>
+
+      
     <div class="project-image">
+      <center> 
         <img src="../assets/images/GEENDWI_02.jpg" alt="GIS Project">
+        </center>
       </div>
   
 
@@ -71,10 +77,12 @@ Map.addLayer(ndwi, {min:-1, max:1, palette:['brown','white','blue']}, 'NDWI');
   </code></pre>
 
   <h2>Step 3: NDWI Thresholding & Classification</h2>
+      
   <p>
     The NDWI values in Sentinel-2 typically range from -1 to 1. Water bodies usually have higher values,
     while vegetation and built-up areas are negative.
   </p>
+      
   <ul>
     <li><strong>Clear deep water:</strong> usually &gt; 0.2 – 0.3</li>
     <li><strong>Turbid or shallow water:</strong> 0.0 – 0.2</li>
@@ -86,7 +94,9 @@ Map.addLayer(ndwi, {min:-1, max:1, palette:['brown','white','blue']}, 'NDWI');
   </div>
 
  <div class="project-image">
+   <center>
         <img src="../assets/images/GEENDWI_03.jpg" alt="GIS Project">
+     </center>
       </div>
 
       
@@ -102,7 +112,9 @@ Map.addLayer(water.updateMask(water), {palette:['blue']}, 'Water Mask');
   </p>
 
  <div class="project-image">
+   <center>
         <img src="../assets/images/GEENDWI_04.jpg" alt="GIS Project">
+   </center>
       </div>
 
       
@@ -120,6 +132,7 @@ Map.addLayer(vectors_wet, {color: 'cyan'}, 'Water Vectors');
   </code></pre>
 
   <h2>Conclusion</h2>
+      
   <p>
     This workflow demonstrates how NDWI can be applied for water surface mapping in Google Earth Engine.
     The process involves: 
