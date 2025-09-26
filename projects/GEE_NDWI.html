@@ -12,7 +12,10 @@
     <h1>Remote Sensing with GEE – NDWI Extraction (Water Surface Mapping)</h1>
 
     <!-- Project Image -->
-    <img src="../assets/images/gee-ndwi-thumb.jpg" alt="NDWI Extraction Map" class="project-image">
+
+     <div class="project-image">
+        <img src="../assets/images/GEENDIW.gif" alt="GIS Project">
+      </div>
 
     <!-- Project Description -->
     <div class="project-description">
@@ -32,6 +35,12 @@
 
       <h2>📌 Processing Steps</h2>
 <h2>Step 1: Load Sentinel-2 Imagery</h2>
+
+      <div class="project-image">
+        <img src="../assets/images/GEENDWI_01.jpg" alt="GIS Project">
+      </div>
+  
+      
   <p>
     Sentinel-2 surface reflectance data (<code>COPERNICUS/S2_SR</code>) was filtered by region of interest (ROI), time period,
     and cloud cover.
@@ -46,11 +55,16 @@ var sentinel_Wet = ee.ImageCollection('COPERNICUS/S2_SR')
   </code></pre>
 
   <h2>Step 2: Compute NDWI</h2>
+    <div class="project-image">
+        <img src="../assets/images/GEENDWI_02.jpg" alt="GIS Project">
+      </div>
+  
+
+      
   <p>
     The NDWI is calculated using the green band (B3) and the near-infrared band (B8) of Sentinel-2:
   </p>
   <p style="text-align:center;"><strong>NDWI = (Green - NIR) / (Green + NIR)</strong></p>
-
   <pre><code class="language-javascript">
 var ndwi = sentinel_Wet.median().normalizedDifference(['B3', 'B8']).rename('NDWI');
 Map.addLayer(ndwi, {min:-1, max:1, palette:['brown','white','blue']}, 'NDWI');
@@ -71,6 +85,11 @@ Map.addLayer(ndwi, {min:-1, max:1, palette:['brown','white','blue']}, 'NDWI');
     This value captured water surfaces effectively in the study area.
   </div>
 
+ <div class="project-image">
+        <img src="../assets/images/GEENDWI_03.jpg" alt="GIS Project">
+      </div>
+
+      
   <pre><code class="language-javascript">
 var water = ndwi.gt(-0.1);
 Map.addLayer(water.updateMask(water), {palette:['blue']}, 'Water Mask');
@@ -82,6 +101,11 @@ Map.addLayer(water.updateMask(water), {palette:['blue']}, 'Water Mask');
     the results more versatile for GIS tasks such as area calculation or overlay with boundaries.
   </p>
 
+ <div class="project-image">
+        <img src="../assets/images/GEENDWI_04.jpg" alt="GIS Project">
+      </div>
+
+      
   <pre><code class="language-javascript">
 // Convert water mask raster to vector polygons
 var vectors_wet = water.addBands(water).reduceToVectors({
