@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NDWI Extraction – GEE Project</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <div class="project-container">
+    <h1>Remote Sensing with GEE – NDWI Extraction (Water Surface Mapping)</h1>
+
+    <!-- Project Image -->
+    <img src="../assets/images/gee-ndwi-thumb.jpg" alt="NDWI Extraction Map" class="project-image">
+
+    <!-- Project Description -->
+    <div class="project-description">
+      <p>
+        This project demonstrates the use of <strong>Google Earth Engine (GEE)</strong> for extracting water surfaces 
+        by computing the <strong>Normalized Difference Water Index (NDWI)</strong> from Sentinel-2 imagery.
+        NDWI is an effective spectral index for mapping open water bodies, distinguishing them 
+        from surrounding vegetation and built-up areas.
+      </p>
+
+      <h2>🛠 Tools & Data Used</h2>
+      <ul>
+        <li><strong>Platform:</strong> Google Earth Engine (JavaScript API)</li>
+        <li><strong>Satellite Data:</strong> Sentinel-2 Surface Reflectance (S2_SR)</li>
+        <li><strong>Study Area:</strong> Defined Region of Interest (ROI)</li>
+      </ul>
+
+      <h2>📌 Processing Steps</h2>
+<h2>Step 1: Load Sentinel-2 Imagery</h2>
+  <p>
+    Sentinel-2 surface reflectance data (<code>COPERNICUS/S2_SR</code>) was filtered by region of interest (ROI), time period,
+    and cloud cover.
+  </p>
+
+  <pre><code class="language-javascript">
+var roi = Roi;
+var sentinel_Wet = ee.ImageCollection('COPERNICUS/S2_SR')
+  .filterDate('2022-06-01','2022-10-30')
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
+  .filterBounds(roi);
+  </code></pre>
+
+  <h2>Step 2: Compute NDWI</h2>
+  <p>
+    The NDWI is calculated using the green band (B3) and the near-infrared band (B8) of Sentinel-2:
+  </p>
+  <p style="text-align:center;"><strong>NDWI = (Green - NIR) / (Green + NIR)</strong></p>
+
+  <pre><code class="language-javascript">
+var ndwi = sentinel_Wet.median().normalizedDifference(['B3', 'B8']).rename('NDWI');
+Map.addLayer(ndwi, {min:-1, max:1, palette:['brown','white','blue']}, 'NDWI');
+  </code></pre>
+
+  <h2>Step 3: NDWI Thresholding & Classification</h2>
+  <p>
+    The NDWI values in Sentinel-2 typically range from -1 to 1. Water bodies usually have higher values,
+    while vegetation and built-up areas are negative.
+  </p>
+  <ul>
+    <li><strong>Clear deep water:</strong> usually &gt; 0.2 – 0.3</li>
+    <li><strong>Turbid or shallow water:</strong> 0.0 – 0.2</li>
+    <li><strong>Wet soil or vegetation:</strong> can overlap near 0.0</li>
+  </ul>
+  <div class="note">
+    In this project, an NDWI threshold of <code>-0.1</code> was applied after testing multiple thresholds.
+    This value captured water surfaces effectively in the study area.
+  </div>
+
+  <pre><code class="language-javascript">
+var water = ndwi.gt(-0.1);
+Map.addLayer(water.updateMask(water), {palette:['blue']}, 'Water Mask');
+  </code></pre>
+
+  <h2>Step 4: Water Surface Vectorization</h2>
+  <p>
+    The binary raster water mask was converted into polygons using <code>reduceToVectors</code>. This makes
+    the results more versatile for GIS tasks such as area calculation or overlay with boundaries.
+  </p>
+
+  <pre><code class="language-javascript">
+// Convert water mask raster to vector polygons
+var vectors_wet = water.addBands(water).reduceToVectors({
+  geometry: roi,
+  scale: 12,
+  geometryType: 'polygon',
+  eightConnected: false,
+  labelProperty: 'Wet zone',
+  reducer: ee.Reducer.mean()
+});
+Map.addLayer(vectors_wet, {color: 'cyan'}, 'Water Vectors');
+  </code></pre>
+
+  <h2>Conclusion</h2>
+  <p>
+    This workflow demonstrates how NDWI can be applied for water surface mapping in Google Earth Engine.
+    The process involves: 
+  </p>
+  <ol>
+    <li>Loading Sentinel-2 data</li>
+    <li>Computing NDWI</li>
+    <li>Threshold-based water classification</li>
+    <li>Vectorization for GIS applications</li>
+  </ol>
+  <p>
+    The resulting vectors can be exported and used in further spatial analysis, environmental monitoring, 
+    or hydrological studies.
+  </p>
+
+    <a href="../index.html" class="back-link">⬅ Back to Portfolio</a>
+  </div>
+
+</body>
+</html>
