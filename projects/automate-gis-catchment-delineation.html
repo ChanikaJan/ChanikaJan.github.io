@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automated Catchment Delineation | CJ Portfolio</title>
+
+  <!-- Modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Automated Multi-Catchment Delineation</h1>
+  </header>
+
+  <!-- Project Detail -->
+  <section class="project-detail">
+    <div class="project-container">
+
+      <!-- Image -->
+
+    <div class="project-image">
+  <figure>
+    <img src="../assets/images/Model01_HydroProcessing.jpg" alt="Hydrological preprocessing">
+    <figcaption>
+      Hydrological preprocessing workflow for DEM-based drainage analysis.
+    </figcaption>
+  </figure>
+</div>
+
+
+<div class="project-image">
+  <figure>
+    <img src="../assets/images/Model02_MultiCatchment.jpg" alt="Automated multi-catchment">
+    <figcaption>
+      Automated multi-catchment delineation model using outlet points.
+    </figcaption>
+  </figure>
+</div>
+
+
+<div class="project-image">
+  <figure>
+    <img src="../assets/images/Multi_CatchmentAreas.gif" alt="MultiCatchment">
+    <figcaption>
+     Example output of automated watershed delineation.
+    </figcaption>
+  </figure>
+</div>
+
+
+
+      <!-- Description -->
+      <div class="project-description">
+                <p>
+         This project demonstrates an automated hydrological workflow for multi-catchment delineation 
+using ArcGIS Pro ModelBuilder. The system processes DEM data to derive flow direction and 
+flow accumulation rasters, automatically snaps outlet points to the drainage network, 
+and delineates watershed boundaries. The resulting catchments are converted to polygons 
+with calculated area attributes, enabling efficient watershed analysis for hydropower 
+and water resource studies.
+        </p>
+
+
+        <p>
+<h4>Workflow Overview</h4>
+<ol>
+<li>Hydrological preprocessing from DEM (Fill, Flow Direction, Flow Accumulation)</li>
+<li>Snap pour points to the highest flow accumulation cells</li>
+<li>Delineate watersheds for each input outlet</li>
+<li>Convert watershed raster outputs to polygon catchment areas</li>
+<li>Automatically calculate catchment area attributes (km²)</li>
+</ol>
+        
+      </p>
+
+<p>
+  This analysis was performed using DEM data derived from
+  SRTM (Shuttle Radar Topography Mission), © NASA / USGS.
+</p>
+      </div>
+    </div>
+
+    <a href="../index.html" class="back-btn">← Back to Portfolio</a>
+  </section>
+
+</body>
+</html>
